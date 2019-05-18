@@ -25,9 +25,10 @@ $( document ).ready(function(){
                 alert("SUCCESS");
                 $("<tr><td>" + todo.title + "</td></tr>").appendTo("#todoList");
             },
-            error: function(e){
+            error: function(e,msg){
                 alert("error");
                 console.log("ERROR: ", e);
+                console.log("MSG: ", msg);
             }
         });
         resetData();

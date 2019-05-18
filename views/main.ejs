@@ -43,13 +43,17 @@
                 <tbody id="todoList">
                 <% for(var i=0; i<todos.length; i++) { var todo = todos[i]; %>
                 <tr>
-                    <td><%=todo.priority%></td>
+                    <td><%=todo.prior%></td>
                     <td><%=todo.title%></td>
-                    <td><input class="form-control" name="showDueDate" id="showDueDate" value=<%=todo.duedate%> disabled></td>
+                    <td><input type="date" class="form-control" name="showDueDate" id="showDueDate(<%= i %>)" value='' disabled></td>
+                    <script>document.getElementById("showDueDate(<%= i %>)").value=formatDate('<%=todo.duedate %>');</script>
                 </tr>
                 <% } %>
                 </tbody>
             </table>
+            <script>
+            console.log(formatDate("<%=todos[0].duedate%>"));
+            </script>
             <!--
             <div class="accordion" id="accordionExample">
                 <div class="card">
