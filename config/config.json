@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "qkrwhddn960703",
+    "database": "node_todo_develop",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "qkrwhddn960703",
+    "database": "node_todo_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "qkrwhddn960703",
+    "database": "node_todo_product",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
