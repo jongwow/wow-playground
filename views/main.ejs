@@ -40,23 +40,38 @@
                     <th>내용</th>
                     <th>마감</th>
                     <th>완료</th>
+                    <th>수정</th>
                     <th>삭제</th>
                 </tr>
                 </thead>
                 <tbody id="todoList">
                 <% for(var i=0; i<todos.length; i++) { var todo = todos[i]; %>
-                <tr id="todoIdx(<%=todo.id%>)">
-                    <td><%=todo.prior%></td>
-                    <td><%=todo.title%></td>
-                    <td><%=todo.content%></td>
+                <tr id="todoIdx_<%=todo.id%>">
+                    <td>
+                        <select class="form-control" name="priority_<%=todo.id%>" id="priority_<%=todo.id%>">
+                                <option value="0" <% if(todo.prior=="0") {%> selected="selected" <% } %> > </option>
+                                <option value="1" <% if(todo.prior=="1") {%> selected="selected" <% } %> >!</option>
+                                <option value="2" <% if(todo.prior=="2") {%> selected="selected" <% } %> >!!</option>
+                                <option value="3" <% if(todo.prior=="3") {%> selected="selected" <% } %> >!!!</option>
+                        </select>
+                    </td>
+                    <td>                        
+                        <input type="text" class="form-control" name="title_<%=todo.id%>" 
+                        id="title_<%=todo.id%>" value="<%=todo.title%>">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="content_<%=todo.id%>" id="content_<%=todo.id%>" value="<%=todo.content%>">
+                    </td>
                     <td><% if(todo.duedate == null){ %> 
+                        <input type="hidden" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value='' disabled>
                         없음
                         <% }else{ %>
-                        <input type="date" class="form-control" name="showDueDate" id="showDueDate(<%= i %>)" value='' disabled>
-                        <script>document.getElementById("showDueDate(<%= i %>)").value=formatDate('<%=todo.duedate %>');</script>
+                        <input type="date" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value='' disabled>
+                        <script>document.getElementById("duedate_<%=todo.id%>").value=formatDate('<%=todo.duedate %>');</script>
                         <% } %>
                     </td>
                     <td><%= todo.check %></td>
+                    <td><button id="todoUpdBtn(<%=todo.id%>)"class="btn btn-danger btn-put" data-id="<%=todo.id%>">수정</button></td>
                     <td><button id="todoDelBtn(<%=todo.id%>)"class="btn btn-danger btn-delete" data-id="<%=todo.id%>">삭제</button></td>
                 </tr>
                 <% } %>

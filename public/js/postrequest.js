@@ -25,10 +25,22 @@ $( document ).ready(function(){
                 //alert("SUCCESS");
                 resetData();
                 if(todo.duedate === null){
-                    $(`<tr><td>${todo.prior}</td><td>${todo.title}</td><td>${todo.content}</td><td>없음</td><td>${todo.check}</td></tr>`).appendTo("#todoList");
+                    let appStr=`<tr><td>${todo.prior}</td><td>${todo.title}</td><td>${todo.content}</td>`;
+                    appStr += `<td>없음</td><td>${todo.check}</td>`;
+                    appStr += `<td><button id="todoDelBtn(${todo.id}`;
+                    appStr += `)"class="btn btn-danger btn-delete" data-id="${todo.id}">삭제</button></td>`;
+                    $(appStr).appendTo("#todoList");
                 }
                 else{
-                    $(`<tr><td>${todo.prior}</td><td>${todo.title}</td><td>${todo.content}</td><td><input type="date" class="form-control" name="showDueDate" id="showDueDate(${todo.id})" value="`+formatDate(todo.duedate)+`" disabled></td><td>${todo.check}</td></tr>`).appendTo("#todoList");
+                    let appStr=``;
+                    appStr += `<tr><td>${todo.prior}</td><td>${todo.title}</td>`;
+                    appStr += `<td>${todo.content}</td>`;
+                    appStr += `<td><input type="date" class="form-control" name="showDueDate" id="showDueDate(${todo.id})" value="`;
+                    appStr += formatDate(todo.duedate);
+                    appStr += `" disabled></td><td>${todo.check}</td>`;
+                    appStr += `<td><button id="todoDelBtn(${todo.id}`;
+                    appStr += `)"class="btn btn-danger btn-delete" data-id="${todo.id}">삭제</button></td>`;
+                    $(appStr).appendTo("#todoList");
                 }
             },
             error: function(res, error, br){ //error, Bad Request

@@ -43,4 +43,23 @@ router.delete('/:id', (req,res,next) => {
 	})
 });
 
+router.put('/:id', (req, res, next)=>{
+	const id = req.params.id;
+	console.log("UPDATE ID:" + id);
+	Todo.update(
+		{
+		title: req.body.title,
+		content: req.body.content,
+		duedate: req.body.duedate,
+		prior: req.body.priority,//check 추가하기
+		},
+		{where:{id:id}},
+		).then((todo) => {
+		res.send(todo);
+	}).catch((err) => {
+		console.log("UPDATE ERROR: " + err);
+		res.status(400).send({msg:"수정 실패. 관리자에게 문의"});
+	})
+})
+
 module.exports = router;
