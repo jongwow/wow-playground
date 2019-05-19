@@ -14,7 +14,8 @@ router.get('/', (req,res,next) => {
 router.post('/', (req, res, next) => {
 	console.log("POST TODO: "+JSON.stringify(req.body));
 	if(req.body.title == "" || req.body.content == ""){
-		res.send({type:"error",msg:"빈칸이 있습니다."});
+		console.log("빈칸이 있는 경우입니다.")
+		res.status(400).send({msg:"빈 칸이 있습니다."});
 	}else{
 		Todo.create({
 			title: req.body.title,
@@ -27,5 +28,19 @@ router.post('/', (req, res, next) => {
 	}
 });
 
+router.delete('/:id', (req,res,next) => {
+	const id = req.params.id;
+	console.log("DELETE ID(" + id + ")");
+	Todo.destroy({where: {id: id}})
+	.then((result)=>{
+		console.log("DELETE COMPLETED");
+		console.log(result);
+		res.send('DELETE SUCCESSFULLY COMPLETED');
+	})
+	.catch((err) => {
+		console.log("DELETE ERROR: " + err);
+		res.status(400).send({msg:"삭제 실패. 관리자에게 문의"});
+	})
+});
 
 module.exports = router;

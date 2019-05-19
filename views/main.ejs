@@ -1,32 +1,32 @@
 <div id="mainBody" class="container">
-    <div class="mainForm row">
-        <form class="form" id="todoForm">
-            <div>
-                제목
+    <div class="mainForm">
+        <form id="todoForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">제목</label>
                 <input type="text" class="form-control" name="title" id="title">
             </div>
-            <div>
-                내용
-                <input type="text" class="form-control" name="content" id="content">
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" id="duedateCheck" onclick="toggleDate();">
-                    <label class="form-check-label" for="duedateCheck">마감기간</label>
-                </div>
-                <input type="date" class="form-control" name="duedate" id="duedate"
-                    min="2010-01-01" max="2020-12-31" readonly>
-            </div>
-            <div class="form-group">
+            <div class="form-group col-md-2">
                 <label for="priority">우선순위</label>
-                <select name="priority" id="priority">
+                <select class="form-control" name="priority" id="priority">
                         <option value="0" selected="selected"> </option>
                         <option value="1">!</option>
                         <option value="2">!!</option>
                         <option value="3">!!!</option>
                 </select>
             </div>
-            <button class="btn" id="submitBtn" type="submit" onclick="testTodo();">제출</button>
+            <div class="form-group col-md-4">
+                <input class="form-check-input" type="checkbox" value="1" id="duedateCheck" onclick="toggleDate();">
+                <label for="duedateCheck">마감기간</label>
+                <input type="date" class="form-control" name="duedate" id="duedate"
+                    min="2010-01-01" max="2020-12-31" readonly>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="content">내용</label>
+                <input type="text" class="form-control" name="content" id="content">
+            </div>
+          </div>
+          <button class="btn btn-primary" id="submitBtn" type="submit" onclick="testTodo();">제출</button>
         </form>
     </div>
     <div class="mainList row">
@@ -37,69 +37,31 @@
                 <tr>
                     <th>우선</th>
                     <th>제목</th>
+                    <th>내용</th>
                     <th>마감</th>
+                    <th>완료</th>
+                    <th>삭제</th>
                 </tr>
                 </thead>
                 <tbody id="todoList">
                 <% for(var i=0; i<todos.length; i++) { var todo = todos[i]; %>
-                <tr>
+                <tr id="todoIdx(<%=todo.id%>)">
                     <td><%=todo.prior%></td>
                     <td><%=todo.title%></td>
-                    <td><input type="date" class="form-control" name="showDueDate" id="showDueDate(<%= i %>)" value='' disabled></td>
-                    <script>document.getElementById("showDueDate(<%= i %>)").value=formatDate('<%=todo.duedate %>');</script>
+                    <td><%=todo.content%></td>
+                    <td><% if(todo.duedate == null){ %> 
+                        없음
+                        <% }else{ %>
+                        <input type="date" class="form-control" name="showDueDate" id="showDueDate(<%= i %>)" value='' disabled>
+                        <script>document.getElementById("showDueDate(<%= i %>)").value=formatDate('<%=todo.duedate %>');</script>
+                        <% } %>
+                    </td>
+                    <td><%= todo.check %></td>
+                    <td><button id="todoDelBtn(<%=todo.id%>)"class="btn btn-danger btn-delete" data-id="<%=todo.id%>">삭제</button></td>
                 </tr>
                 <% } %>
                 </tbody>
             </table>
-            <script>
-            console.log(formatDate("<%=todos[0].duedate%>"));
-            </script>
-            <!--
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
-                      </button>
-                    </h2>
-                  </div>
-              
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-            </div>-->
         </div>
     </div>
 </div>
