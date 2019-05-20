@@ -13,7 +13,7 @@ router.get('/', (req,res,next) => {
 
 router.post('/', (req, res, next) => {
 	console.log("POST TODO: "+JSON.stringify(req.body));
-	if(req.body.title == "" || req.body.content == ""){
+	if(req.body.title == "" || req.body.content == "" || req.body.duedate == ""){
 		console.log("빈칸이 있는 경우입니다.")
 		res.status(400).send({msg:"빈 칸이 있습니다."});
 	}else{

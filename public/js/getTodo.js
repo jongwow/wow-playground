@@ -1,5 +1,4 @@
 function toggleDate(){
-    
     if($("#duedateCheck").prop("checked")){
         console.log("DueDate UNLOCKED");
         $("#duedate").attr("readonly",false);
@@ -9,6 +8,16 @@ function toggleDate(){
         $("#duedate").attr("readonly",true);
     }
 };
+function todo_toggleDate(dId){
+    if($("#duedate_check_"+dId).prop("checked")){
+        console.log("DueDate(" + dId + ") UNLOCKED");
+        $("#duedate_"+dId).attr("readonly",false);
+    }else{
+        console.log("DueDate(" + dId + ") LOCKED");
+        $("#duedate_"+dId).attr("readonly",true);
+    }
+};
+
 function testTodo(){
     var con= "";
     con += $("#title").val() + ", ";

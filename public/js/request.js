@@ -28,10 +28,14 @@ $( document ).ready(function(){
         });
     };
     function ajaxUpdate(dId){
+        
+        if(!($("#duedate_check_"+dId).prop("checked"))){
+            $("#duedate_"+dId).val("");
+        }
         const formData = {
             title: $("#title_"+dId).val(),
             content: $("#content_"+dId).val(),
-            duedate: $("#duedue_"+dId).val(),
+            duedate: ($("#duedate_"+dId).val()=="") ? null:$("#duedate_"+dId).val(),
             priority: $("#priority_"+dId).val(),//check 추가하기
         }
         $.ajax({
@@ -41,8 +45,6 @@ $( document ).ready(function(){
             data: JSON.stringify(formData),
             success:function(res){
                 alert("SUCCESS");
-                windows.location('/');
-
             },
             error:function(res,err,br){
                 alert(br + " : " + res.responseJSON.msg);

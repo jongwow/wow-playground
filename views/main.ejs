@@ -62,11 +62,14 @@
                     <td>
                         <input type="text" class="form-control" name="content_<%=todo.id%>" id="content_<%=todo.id%>" value="<%=todo.content%>">
                     </td>
-                    <td><% if(todo.duedate == null){ %> 
-                        <input type="hidden" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value='' disabled>
-                        없음
+                    <td>
+                        <% if(todo.duedate == null){ %> 
+                        <input class="form-check-input duedate_check" type="checkbox" id="duedate_check_<%=todo.id%>" value="1" onclick="todo_toggleDate(<%=todo.id%>);">
+                        <input type="date" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value='' readonly>
+                        
                         <% }else{ %>
-                        <input type="date" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value='' disabled>
+                        <input class="form-check-input duedate_check" type="checkbox" id="duedate_check_<%=todo.id%>" value="1" onclick="todo_toggleDate(<%=todo.id%>);" checked>
+                        <input type="date" class="form-control" name="duedate_<%=todo.id%>" id="duedate_<%=todo.id%>" value=''>
                         <script>document.getElementById("duedate_<%=todo.id%>").value=formatDate('<%=todo.duedate %>');</script>
                         <% } %>
                     </td>

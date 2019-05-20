@@ -27,9 +27,10 @@ $( document ).ready(function(){
                 if(todo.duedate === null){
                     let appStr=`<tr><td>${todo.prior}</td><td>${todo.title}</td><td>${todo.content}</td>`;
                     appStr += `<td>없음</td><td>${todo.check}</td>`;
-                    appStr += `<td><button id="todoDelBtn(${todo.id}`;
-                    appStr += `)"class="btn btn-danger btn-delete" data-id="${todo.id}">삭제</button></td>`;
-                    $(appStr).appendTo("#todoList");
+                    appStr += `<td><button id="todoUpdBtn(${todo.id})" class="btn btn-danger btn-put" data-id="${todo.id}">수정</button></td>`;
+                    appStr += `<td><button id="todoDelBtn(${todo.id})" class="btn btn-danger btn-delete" data-id="${todo.id}">삭제</button></td>`;
+                    appStr += `</tr>`;
+                    $(appStr).appendTo("#todoList");                    
                 }
                 else{
                     let appStr=``;
@@ -38,8 +39,10 @@ $( document ).ready(function(){
                     appStr += `<td><input type="date" class="form-control" name="showDueDate" id="showDueDate(${todo.id})" value="`;
                     appStr += formatDate(todo.duedate);
                     appStr += `" disabled></td><td>${todo.check}</td>`;
+                    appStr += `<td><button id="todoUpdBtn(${todo.id})" class="btn btn-danger btn-put" data-id="${todo.id}">수정</button></td>`;
                     appStr += `<td><button id="todoDelBtn(${todo.id}`;
                     appStr += `)"class="btn btn-danger btn-delete" data-id="${todo.id}">삭제</button></td>`;
+                    appStr += `</tr>`;
                     $(appStr).appendTo("#todoList");
                 }
             },
