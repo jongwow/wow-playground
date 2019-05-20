@@ -1,5 +1,6 @@
 # nodeTodo
-Node와 Express, MariaDB를 이용해 TodoList를 작성/수정/삭제하는 NodeTodo입니다.
+Node와 Express, MariaDB를 이용해 TodoList를 작성/수정/삭제하는 nodeTodo입니다.
+![nodeTodo](/img.png "nodeTodo");
 
 ## Getting Started
 본 체계는 Node(v.10 이상), Express(4.16 이상), Mariadb(version 14.14) 기반입니다.
@@ -30,6 +31,21 @@ npm i -g nodemon
 본인의 DB 설정에 맞춰서 파일을 수정합니다.<br>
 경로: /config/config.json <br>
 <br>
-취향에 맞게 서버 포트를 설정합니다.
+취향에 맞게 서버 포트를 설정합니다.<br>
 경로: /app.js , line 17. <br>
 <br>
+Sequelize를 이용해서 사용할 DB를 설정합니다. <br>
+``` 
+sequelize db:create 
+```
+### Service Start
+nodemon을 설치했을 경우, package.json 수정없이 그대로 아래의 명령어를 실행하면 서버가 실행됩니다.
+``` 
+npm start 
+```
+nodemon 설치 없이 진행할 경우, package.json의 *"start":nodemon app.js* 를  *"start": node app.js* 로 수정하고 아래의 명령어로 실행합니다.
+``` 
+npm start 
+```
+
+
