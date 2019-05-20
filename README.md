@@ -1,6 +1,8 @@
 # nodeTodo
 Node와 Express, MariaDB를 이용해 TodoList를 작성/수정/삭제하는 nodeTodo입니다.
-![nodeTodo](/img.png "nodeTodo");
+![nodeTodo](/img.png "nodeTodo")<br>
+현재 Naver Cloud Platform에서 운용중인 예제로 확인할 수 있습니다.<br>
+http://101.101.167.218:8001/
 
 ## Getting Started
 본 체계는 Node(v.10 이상), Express(4.16 이상), Mariadb(version 14.14) 기반입니다.
