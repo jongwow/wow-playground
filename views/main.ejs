@@ -73,12 +73,18 @@
                         <script>document.getElementById("duedate_<%=todo.id%>").value=formatDate('<%=todo.duedate %>');</script>
                         <% } %>
                     </td>
-                    <td><%= todo.check %></td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="todo_check_<%=todo.id%>" <% if(todo.check) { %> checked <% } %>>
+                            <label class="custom-control-label" for="todo_check_<%=todo.id%>"></label>
+                        </div>
+                    </td>
                     <td><button id="todoUpdBtn(<%=todo.id%>)"class="btn btn-danger btn-put" data-id="<%=todo.id%>">수정</button></td>
                     <td><button id="todoDelBtn(<%=todo.id%>)"class="btn btn-danger btn-delete" data-id="<%=todo.id%>">삭제</button></td>
                 </tr>
                 <% } %>
                 </tbody>
+
             </table>
         </div>
     </div>

@@ -4,9 +4,15 @@ const router = express.Router();
 
 router.get('/', (req,res,next) => {
 	Todo.findAll().then((todos) => {
+		let noti = 0;
+		const today = new Date();
+		for(let i=0; i<todos.length; i++)
+			if(todos[i].duedate < today)
+				noti++;
 		res.render('index', {
 			title: 'NodeTodo',
 			todos: todos,
+			noti:noti,
 		});
 	});
 });
@@ -45,6 +51,9 @@ router.delete('/:id', (req,res,next) => {
 
 router.put('/:id', (req, res, next)=>{
 	const id = req.params.id;
+	let check = false;
+	if(req.body.check == "on")
+		check = true;
 	console.log("UPDATE ID:" + id);
 	Todo.update(
 		{
@@ -52,6 +61,7 @@ router.put('/:id', (req, res, next)=>{
 		content: req.body.content,
 		duedate: req.body.duedate,
 		prior: req.body.priority,//check 추가하기
+		check: check,
 		},
 		{where:{id:id}},
 		).then((todo) => {
@@ -60,6 +70,6 @@ router.put('/:id', (req, res, next)=>{
 		console.log("UPDATE ERROR: " + err);
 		res.status(400).send({msg:"수정 실패. 관리자에게 문의"});
 	})
-})
+});
 
 module.exports = router;

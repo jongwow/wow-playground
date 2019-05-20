@@ -37,6 +37,7 @@ $( document ).ready(function(){
             content: $("#content_"+dId).val(),
             duedate: ($("#duedate_"+dId).val()=="") ? null:$("#duedate_"+dId).val(),
             priority: $("#priority_"+dId).val(),//check 추가하기
+            check: $("#todo_check_"+dId).val(),
         }
         $.ajax({
             type:"PUT",

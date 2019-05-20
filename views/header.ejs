@@ -1,5 +1,27 @@
-<nav>
-    <div>
-        네비바
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">NodeTodo</a>
+    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#notiModal">
+        Notifications <span class="badge badge-primary"><%=noti%></span>
+    </button>
+    <div class="modal fade" id="notiModal" tabindex="-1" role="dialog" aria-labelledby="notiModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notiModalLabel">Notifications</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    마감기간이 지난 TODO 출력.<br>
+                    <% const today = new Date(); for(let i=0; i<todos.length; i++){ let todo = todos[i]; if(todo.duedate > today) continue; %>
+                    제목: <%= todo.title %> <br>
+                    <% } %>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
