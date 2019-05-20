@@ -8,7 +8,7 @@
     "start": "nodemon app"
   },
   "author": "jongwoo",
-  "license": "MIT",
+  "license": "MIT, GPL",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
