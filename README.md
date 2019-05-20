@@ -48,4 +48,7 @@ nodemon 설치 없이 진행할 경우, package.json의 *"start":nodemon app.js*
 npm start 
 ```
 
-
+### 보완점
+*보안조치(ssl 적용)*
+*모듈화(스파게티 코드)*
+*프론트엔드서버와 백엔드 서버 분리*
