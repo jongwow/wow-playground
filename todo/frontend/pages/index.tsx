@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { Items } from './components/Items';
+import { AddItemButton } from './components/AddItemButton';
 
 const Home: NextPage = () => {
   return (
@@ -17,9 +18,7 @@ const Home: NextPage = () => {
           Welcome to <a href="#">Simple To Do App!</a>
         </h1>
         <h6>(STD...A?)</h6>
-        <p className={styles.description}>
-          할까? 버튼을 눌러서 할일 목록에 추가해보세요 <a href="#">할까?</a>
-        </p>
+        <AddItemButton />
         <Items />
       </main>
     </div>

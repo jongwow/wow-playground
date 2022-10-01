@@ -1,0 +1,21 @@
+대강 디자인 만들기
+[ ] list로 보여주기
+[ ] 버튼 누르면 입력창 나오게 하기
+[ ] 상태들에 따라서 디자인 다르게 하기
+
+To Do 기능 만들기
+[ ] Add, Remove, Update - Jotai 로 해보기
+[ ] Drag and Drop 기능 만들기
+
+서버 만들기
+[ ] Nest 로 TDD
+[ ] 클라랑 서버랑 연결하기
+
+추가작업
+[ ] storybook 만들기
+[ ] Layout 변경할 수 있게
+- list, grid, card, kanban?, new type?
+[ ] 로그인 기능 + 팀 기능
+[ ] SSE
+[ ] PWA
+[ ] CI/CD
